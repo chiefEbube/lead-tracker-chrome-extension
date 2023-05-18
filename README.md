@@ -1,0 +1,1 @@
+# Lead Tracker is a chrome extension that will keep track of tabs the user might want to visit later.
