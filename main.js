@@ -6,10 +6,6 @@ const ulEl = document.getElementById("ul-el")
 const deleteBtn = document.querySelector("#del-btn")
 const tabBtn = document.querySelector("#tab-btn")
 
-const tabs = [
-    { url: "https://linkedin.com.in/per-harald-borgen" }
-]
-
 let tabsFromLocalStorage = JSON.parse(localStorage.getItem("myTabs"))
 
 if (tabsFromLocalStorage) {
@@ -42,9 +38,11 @@ inputBtn.addEventListener("click", function () {
 })
 
 tabBtn.addEventListener("click", function () {
-    myTabs.push(tabs[0].url)
-    localStorage.setItem("myTabs", JSON.stringify(myTabs))
-    render(myTabs)
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        myTabs.push(tabs[0].url)
+        localStorage.setItem("myTabs", JSON.stringify(myTabs))
+        render(myTabs)
+    })
 })
 
 deleteBtn.addEventListener("dblclick", function () {
