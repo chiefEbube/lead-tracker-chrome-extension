@@ -25,6 +25,8 @@ button{
     font-size: 1em;
     border-radius: 3px;
     transition: all ease-in-out 0.3s;
+    margin-right: 5px;
+
 }
 
 button:hover{

@@ -1,22 +1,29 @@
-let myLeads = []
+let myTabs = []
+
 const inputElement = document.querySelector("#input-element")
 const inputBtn = document.querySelector("#input-btn")
 const ulEl = document.getElementById("ul-el")
 const deleteBtn = document.querySelector("#del-btn")
-let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+const tabBtn = document.querySelector("#tab-btn")
 
-if (leadsFromLocalStorage) {
-    myLeads = leadsFromLocalStorage
-    render(myLeads)
+const tabs = [
+    { url: "https://linkedin.com.in/per-harald-borgen" }
+]
+
+let tabsFromLocalStorage = JSON.parse(localStorage.getItem("myTabs"))
+
+if (tabsFromLocalStorage) {
+    myTabs = tabsFromLocalStorage
+    render(myTabs)
 }
 
-function render(leads) {
+function render(tabs) {
     let listItems = ""
-    for (let i = 0; i < leads.length; i++) {
+    for (let i = 0; i < tabs.length; i++) {
         listItems += `
         <li>
-            <a target='_blank' href='${leads[i]}'>
-                ${leads[i]}
+            <a target='_blank' href='${tabs[i]}'>
+                ${tabs[i]}
             </a>
         </li>
         `
@@ -26,18 +33,24 @@ function render(leads) {
 
 inputBtn.addEventListener("click", function () {
     if (inputElement.value !== '') {
-        myLeads.push(inputElement.value)
+        myTabs.push(inputElement.value)
         inputElement.value = ''
-        localStorage.setItem("myLeads", JSON.stringify(myLeads))
-        render(myLeads)
+        localStorage.setItem("myTabs", JSON.stringify(myTabs))
+        render(myTabs)
     }
 
 })
 
-deleteBtn.addEventListener("dblclick", function(){
+tabBtn.addEventListener("click", function () {
+    myTabs.push(tabs[0].url)
+    localStorage.setItem("myTabs", JSON.stringify(myTabs))
+    render(myTabs)
+})
+
+deleteBtn.addEventListener("dblclick", function () {
     localStorage.clear()
-    myLeads = []
-    render(myLeads)
+    myTabs = []
+    render(myTabs)
 })
 
 
@@ -45,17 +58,17 @@ deleteBtn.addEventListener("dblclick", function(){
 
 
 
-// // myLeads = JSON.parse(myLeads)
-// // myLeads.push("Herald")
-// // myLeads = JSON.stringify(myLeads)
-// // console.log(typeof myLeads)
+// // myTabs = JSON.parse(myTabs)
+// // myTabs.push("Soye")
+// // myTabs = JSON.stringify(myTabs)
+// // console.log(typeof myTabs)
 
-// // localStorage.setItem("name", "Per Borgen")
+// // localStorage.setItem("name", "Soye Charles")
 // // console.log(localStorage.getItem("name"))
 // // localStorage.clear()
 
 
 
 // // const li = document.createElement("li")
-//         // li.textContent = myLeads[i]
+//         // li.textContent = myTabs[i]
 //         // ulEl.append(li)
